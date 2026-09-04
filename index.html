@@ -3,29 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A tiny command-line treasure hunt." />
-    <title>Terminal Trek</title>
+    <meta name="description" content="A calm, sentence-by-sentence reading experience." />
+    <title>Still — a slower reader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="page-shell">
-      <header>
-        <p class="eyebrow">github pages / tiny browser game</p>
-        <h1>Terminal Trek</h1>
-        <p class="intro">Find the hidden signal before your battery runs out.</p>
-      </header>
-
-      <section class="terminal" aria-label="Game terminal">
-        <div class="terminal-bar"><span></span><span></span><span></span><b>trek@pages:~</b></div>
-        <div id="output" class="output" aria-live="polite"></div>
-        <form id="command-form" autocomplete="off">
-          <label for="command"><span>➜</span> <span class="path">~/trek</span> $</label>
-          <input id="command" name="command" type="text" autofocus spellcheck="false" aria-label="Enter a game command" />
-        </form>
-      </section>
-
-      <p class="hint">Try <kbd>help</kbd> to begin. Commands: look, go, take, inventory, status, restart.</p>
+    <header class="topbar">
+      <a class="brand" href="#start" aria-label="Still reader home">still<span>•</span></a>
+      <p>The Art of Attention</p>
+      <button id="restart" type="button">Beginning</button>
+    </header>
+    <main id="reader" aria-label="Sentence by sentence book reader">
+      <section class="page title-page" id="start"><div class="title-content"><p class="kicker">A small reading ritual</p><h1>The Art<br>of Attention</h1><p class="byline">A brief reading on moving slowly</p><p class="start-prompt">Scroll to begin <span>↓</span></p></div></section>
+      <section class="page reading-page"><div class="reading-content"><p class="number">01</p><p class="sentence">The day asks for our attention in a hundred small voices.</p></div></section>
+      <section class="page reading-page"><div class="reading-content"><p class="number">02</p><p class="sentence">Most of them arrive before we have chosen what matters.</p></div></section>
+      <section class="page reading-page"><div class="reading-content"><p class="number">03</p><p class="sentence">A page offers a different kind of invitation: stay here a little longer.</p></div></section>
+      <section class="page reading-page"><div class="reading-content"><p class="number">04</p><p class="sentence">There is no feed to finish, only a thought that can open at its own pace.</p></div></section>
+      <section class="page reading-page"><div class="reading-content"><p class="number">05</p><p class="sentence">Read one sentence. Let it become present.</p></div></section>
+      <section class="page reading-page"><div class="reading-content"><p class="number">06</p><p class="sentence">Then take the next one with you.</p></div></section>
+      <section class="page ending-page"><div class="title-content"><p class="kicker">End of this small chapter</p><h2>Keep the<br>quiet.</h2><button class="read-again" type="button">Read again ↑</button></div></section>
     </main>
+    <aside class="progress" aria-label="Reading progress"><span id="progress-fill"></span></aside>
+    <p class="gesture">Scroll slowly <span>↓</span></p>
     <script src="game.js"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
-# Terminal Trek
+# Still
 
-A tiny, dependency-free browser CLI game, ready for GitHub Pages.
+A sentence-by-sentence, full-screen book reader designed for slower reading. It uses scroll snap so every gesture reveals just one thought at a time.
 
 ## Publish
 
