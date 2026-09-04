@@ -2,6 +2,8 @@
 
 A sentence-by-sentence, full-screen book reader designed for slower reading. It uses scroll snap so every gesture reveals just one thought at a time.
 
+Use **Open book** to load a PDF, EPUB, TXT, Markdown, or HTML file, or paste a passage. Reading happens entirely in the browser; uploaded files are never sent to a server.
+
 ## Publish
 
 1. Create a GitHub repository and push these files to its `main` branch.

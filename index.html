@@ -13,8 +13,8 @@
   <body>
     <header class="topbar">
       <a class="brand" href="#start" aria-label="Still reader home">still<span>•</span></a>
-      <p>The Art of Attention</p>
-      <button id="restart" type="button">Beginning</button>
+      <p id="book-title">The Art of Attention</p>
+      <button id="open-library" type="button">Open book</button>
     </header>
     <main id="reader" aria-label="Sentence by sentence book reader">
       <section class="page title-page" id="start"><div class="title-content"><p class="kicker">A small reading ritual</p><h1>The Art<br>of Attention</h1><p class="byline">A brief reading on moving slowly</p><p class="start-prompt">Scroll to begin <span>↓</span></p></div></section>
@@ -26,8 +26,21 @@
       <section class="page reading-page"><div class="reading-content"><p class="number">06</p><p class="sentence">Then take the next one with you.</p></div></section>
       <section class="page ending-page"><div class="title-content"><p class="kicker">End of this small chapter</p><h2>Keep the<br>quiet.</h2><button class="read-again" type="button">Read again ↑</button></div></section>
     </main>
+    <input id="file-input" type="file" accept=".pdf,.epub,.txt,.md,.markdown,.html,.htm,text/plain,text/markdown,text/html,application/pdf,application/epub+zip" hidden />
+    <dialog id="library">
+      <button class="close-dialog" type="button" aria-label="Close">×</button>
+      <p class="kicker">Your library</p>
+      <h2>Bring a book<br>to still.</h2>
+      <label class="upload" for="file-input">Choose a file <span>↑</span></label>
+      <p class="formats">PDF · EPUB · TXT · Markdown · HTML</p>
+      <div class="or"><span>or</span></div>
+      <label class="paste-label" for="paste-text">Paste a passage</label>
+      <textarea id="paste-text" placeholder="Paste your text here…"></textarea>
+      <button id="read-paste" class="read-paste" type="button">Start reading</button>
+      <p id="import-status" class="import-status" aria-live="polite"></p>
+    </dialog>
     <aside class="progress" aria-label="Reading progress"><span id="progress-fill"></span></aside>
     <p class="gesture">Scroll slowly <span>↓</span></p>
-    <script src="game.js"></script>
+    <script type="module" src="game.js"></script>
   </body>
 </html>
