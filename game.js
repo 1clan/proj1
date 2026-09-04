@@ -12,7 +12,7 @@ function closeLibrary() {
 }
 
 function sentenceUnits(text) {
-  return text.replace(/\s+/g, ' ').trim().match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g)?.map((s) => s.trim()).filter((s) => s.length > 2) || [];
+  return text.replace(/\s+/g, ' ').trim().match(/[^.!?।॥]+[.!?।॥]+(?:["')\]]+)?|[^.!?।॥]+$/g)?.map((s) => s.trim()).filter((s) => s.length > 2) || [];
 }
 function pageMarkup(sentence, index) {
   return '<section class="page reading-page"><div class="reading-content"><p class="number">' +
