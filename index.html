@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A tiny command-line treasure hunt." />
+    <title>Terminal Trek</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header>
+        <p class="eyebrow">github pages / tiny browser game</p>
+        <h1>Terminal Trek</h1>
+        <p class="intro">Find the hidden signal before your battery runs out.</p>
+      </header>
+
+      <section class="terminal" aria-label="Game terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span><b>trek@pages:~</b></div>
+        <div id="output" class="output" aria-live="polite"></div>
+        <form id="command-form" autocomplete="off">
+          <label for="command"><span>➜</span> <span class="path">~/trek</span> $</label>
+          <input id="command" name="command" type="text" autofocus spellcheck="false" aria-label="Enter a game command" />
+        </form>
+      </section>
+
+      <p class="hint">Try <kbd>help</kbd> to begin. Commands: look, go, take, inventory, status, restart.</p>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
