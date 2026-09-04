@@ -1,8 +1,3 @@
-import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs';
-import ePub from 'https://cdn.jsdelivr.net/npm/epubjs@0.3.93/+esm';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
-
 const reader = document.querySelector('#reader');
 const progressFill = document.querySelector('#progress-fill');
 const library = document.querySelector('#library');
@@ -11,6 +6,10 @@ const status = document.querySelector('#import-status');
 const title = document.querySelector('#book-title');
 let pages = [];
 let observer;
+function closeLibrary() {
+  if (typeof library.close === 'function') library.close();
+  else library.removeAttribute('open');
+}
 
 function sentenceUnits(text) {
   return text.replace(/\s+/g, ' ').trim().match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g)?.map((s) => s.trim()).filter((s) => s.length > 2) || [];
@@ -31,7 +30,7 @@ function setBook(name, text) {
     sentences.map(pageMarkup).join('') +
     '<section class="page ending-page"><div class="title-content"><p class="kicker">End of this reading</p><h2>Keep the<br>quiet.</h2><button class="read-again" type="button">Read again ↑</button></div></section>';
   setupReader();
-  library.close();
+  closeLibrary();
   document.querySelector('#start').scrollIntoView();
 }
 function setupReader() {
@@ -48,6 +47,9 @@ function updateProgress() {
   progressFill.style.width = Math.min(100, (window.scrollY / max) * 100) + '%';
 }
 async function readPdf(file) {
+  status.textContent = 'Loading PDF reader…';
+  const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs');
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
   const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
   const chunks = [];
   for (let n = 1; n <= pdf.numPages; n++) {
@@ -58,6 +60,9 @@ async function readPdf(file) {
   return chunks.join('\n');
 }
 async function readEpub(file) {
+  status.textContent = 'Loading EPUB reader…';
+  const epubModule = await import('https://cdn.jsdelivr.net/npm/epubjs@0.3.93/+esm');
+  const ePub = epubModule.default;
   status.textContent = 'Opening EPUB…';
   const book = ePub(await file.arrayBuffer());
   await book.ready;
@@ -79,8 +84,11 @@ async function importFile(file) {
     status.textContent = error.message || 'That file could not be opened.';
   }
 }
-document.querySelector('#open-library').addEventListener('click', () => library.showModal());
-document.querySelector('.close-dialog').addEventListener('click', () => library.close());
+document.querySelector('#open-library').addEventListener('click', () => {
+  if (typeof library.showModal === 'function') library.showModal();
+  else library.setAttribute('open', '');
+});
+document.querySelector('.close-dialog').addEventListener('click', closeLibrary);
 fileInput.addEventListener('change', () => fileInput.files[0] && importFile(fileInput.files[0]));
 document.querySelector('#read-paste').addEventListener('click', () => {
   const text = document.querySelector('#paste-text').value;
