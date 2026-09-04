@@ -1,10 +1,70 @@
-:root { --paper: #f7f1e5; --ink: #23352c; --clay: #ad4d32; --faded: #887d6b; font-family: "DM Sans", sans-serif; color: var(--ink); background: var(--paper); }
+:root {
+  --paper: #f7f1e5;
+  --paper-2: #ede4d4;
+  --ink: #23352c;
+  --clay: #ad4d32;
+  --faded: #887d6b;
+  --panel-bg: #182c22;
+  --panel-border: #496055;
+  --panel-text: #fff9ea;
+  --panel-muted: #b2beae;
+  --panel-line: #f2d9c0;
+  --accent: #d99462;
+  --accent-muted: #dbad82;
+  --accent-soft: #f3d4a9;
+  --accent-strong: #e9ab75;
+  --accent-glow: #f3c785;
+  --kicker: #dbad82;
+  --byline: #c8c8af;
+  --prompt: #e1b087;
+  --ring: #d99462;
+  --ending-bg: #c9704c;
+  --ending-text: #fff9ea;
+  --ending-kicker: #f3d4a9;
+  --ending-line: #fff9ea;
+  --progress-track: #e0d6c4;
+  --backdrop: #16241dcc;
+  --accent-btn-text: #23352c;
+  font-family: "DM Sans", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+:root.dark {
+  --paper: #1a1a1c;
+  --paper-2: #202022;
+  --ink: #95918a;
+  --clay: #96705a;
+  --faded: #6a665f;
+  --panel-bg: #222327;
+  --panel-border: #3a3b40;
+  --panel-text: #b0aca5;
+  --panel-muted: #7b776f;
+  --panel-line: #a39f97;
+  --accent: #8f6a55;
+  --accent-muted: #8f6a55;
+  --accent-soft: #7b776f;
+  --accent-strong: #9a7158;
+  --accent-glow: #a58a6f;
+  --kicker: #7b776f;
+  --byline: #7b776f;
+  --prompt: #7b776f;
+  --ring: #5c544a;
+  --ending-bg: #26221e;
+  --ending-text: #a39f97;
+  --ending-kicker: #7b776f;
+  --ending-line: #7b776f;
+  --progress-track: #2b2b2e;
+  --backdrop: #0d0d0fcc;
+  --accent-btn-text: #1a1a1c;
+  color-scheme: dark;
+}
 * { box-sizing: border-box; } html { scroll-snap-type: y mandatory; scroll-behavior: smooth; } body { margin: 0; overflow-x: hidden; }
 .topbar { align-items: center; background: color-mix(in srgb, var(--paper) 90%, transparent); display: flex; height: 72px; justify-content: space-between; left: 0; padding: 0 clamp(20px, 4vw, 56px); position: fixed; right: 0; top: 0; z-index: 2; }
 .brand { color: var(--ink); font-family: "Crimson Pro", serif; font-size: 1.75rem; font-weight: 600; letter-spacing: -.07em; text-decoration: none; }.brand span { color: var(--clay); }.topbar p { color: var(--faded); font-size: .69rem; letter-spacing: .1em; margin: 0; text-transform: uppercase; }.topbar button, .read-again { background: none; border: 0; color: var(--clay); cursor: pointer; font: 500 .72rem "DM Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
-.page { align-items: center; display: flex; min-height: 100svh; scroll-snap-align: start; justify-content: center; padding: 100px 30px 70px; position: relative; }.title-page { background: var(--ink); color: var(--paper); }.title-page::after, .ending-page::after { border: 1px solid #d99462; border-radius: 999px; content: ""; height: min(58vw, 540px); opacity: .58; position: absolute; right: -12vw; top: 21%; width: min(58vw, 540px); }.title-content { position: relative; text-align: center; z-index: 1; }.kicker { color: #dbad82; font-size: .67rem; letter-spacing: .18em; text-transform: uppercase; }.title-content h1, .title-content h2 { font: 500 clamp(4rem, 12vw, 8.5rem)/.8 "Crimson Pro", serif; letter-spacing: -.08em; margin: 24px 0; }.byline { color: #c8c8af; font: italic 1.2rem "Crimson Pro", serif; }.start-prompt { color: #e1b087; font-size: .73rem; letter-spacing: .1em; margin-top: 62px; text-transform: uppercase; }.start-prompt span, .gesture span { font-size: 1.1rem; margin-left: 7px; }
-.reading-page:nth-of-type(odd) { background: #ede4d4; }.reading-content { max-width: 1400px; width: 100%; }.number { color: var(--clay); font-size: .72rem; letter-spacing: .16em; margin: 0 0 30px; }.sentence { font: 400 clamp(2rem, 4.2vw, 4.5rem)/1.12 "Crimson Pro", "Noto Serif Devanagari", serif; letter-spacing: -.04em; margin: 0; }.reading-page.is-active .sentence { animation: arrive .65s both cubic-bezier(.2,.7,.25,1); } @keyframes arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.ending-page { background: #c9704c; color: #fff9ea; }.ending-page .kicker { color: #f3d4a9; }.read-again { border-bottom: 1px solid #fff9ea; color: #fff9ea; margin-top: 26px; padding: 8px 0; }
-.progress { background: #e0d6c4; bottom: 26px; height: 3px; left: clamp(20px, 4vw, 56px); position: fixed; right: clamp(20px, 4vw, 56px); z-index: 3; }.progress span { background: var(--clay); display: block; height: 100%; transition: width .25s ease; width: 0; }.gesture { bottom: 37px; color: var(--faded); font-size: .65rem; letter-spacing: .1em; margin: 0; position: fixed; right: clamp(20px, 4vw, 56px); text-transform: uppercase; z-index: 3; }
+.topbar .theme { margin-left: 18px; }
+.page { align-items: center; display: flex; min-height: 100svh; scroll-snap-align: start; justify-content: center; padding: 100px 30px 70px; position: relative; }.title-page { background: var(--ink); color: var(--paper); }.title-page::after, .ending-page::after { border: 1px solid var(--ring); border-radius: 999px; content: ""; height: min(58vw, 540px); opacity: .58; position: absolute; right: -12vw; top: 21%; width: min(58vw, 540px); }.title-content { position: relative; text-align: center; z-index: 1; }.kicker { color: var(--kicker); font-size: .67rem; letter-spacing: .18em; text-transform: uppercase; }.title-content h1, .title-content h2 { font: 500 clamp(4rem, 12vw, 8.5rem)/.8 "Crimson Pro", serif; letter-spacing: -.08em; margin: 24px 0; }.byline { color: var(--byline); font: italic 1.2rem "Crimson Pro", serif; }.start-prompt { color: var(--prompt); font-size: .73rem; letter-spacing: .1em; margin-top: 62px; text-transform: uppercase; }.start-prompt span, .gesture span { font-size: 1.1rem; margin-left: 7px; }
+.reading-page:nth-of-type(odd) { background: var(--paper-2); }.reading-content { max-width: 1400px; width: 100%; }.number { color: var(--clay); font-size: .72rem; letter-spacing: .16em; margin: 0 0 30px; }.sentence { font: 400 clamp(2rem, 4.2vw, 4.5rem)/1.12 "Crimson Pro", "Noto Serif Devanagari", serif; letter-spacing: -.04em; margin: 0; }.reading-page.is-active .sentence { animation: arrive .65s both cubic-bezier(.2,.7,.25,1); } @keyframes arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.ending-page { background: var(--ending-bg); color: var(--ending-text); }.ending-page .kicker { color: var(--ending-kicker); }.read-again { border-bottom: 1px solid var(--ending-line); color: var(--ending-text); margin-top: 26px; padding: 8px 0; }
+.progress { background: var(--progress-track); bottom: 26px; height: 3px; left: clamp(20px, 4vw, 56px); position: fixed; right: clamp(20px, 4vw, 56px); z-index: 3; }.progress span { background: var(--clay); display: block; height: 100%; transition: width .25s ease; width: 0; }.gesture { bottom: 37px; color: var(--faded); font-size: .65rem; letter-spacing: .1em; margin: 0; position: fixed; right: clamp(20px, 4vw, 56px); text-transform: uppercase; z-index: 3; }
 @media (max-width: 600px) { .topbar p { display: none; }.page { padding-inline: 24px; }.sentence { font-size: clamp(2rem, 10.5vw, 3.2rem); }.gesture { display: none; } }
-dialog { background: var(--ink); border: 0; color: var(--paper); max-width: 650px; min-height: min(620px, 92svh); padding: clamp(35px, 7vw, 70px); width: min(100%, 650px); } dialog::backdrop { background: #16241dcc; backdrop-filter: blur(4px); } dialog h2 { font: 500 clamp(3.4rem, 9vw, 6rem)/.84 "Crimson Pro", serif; letter-spacing: -.07em; margin: 18px 0 38px; } dialog .kicker { color: #dbad82; margin: 0; }.close-dialog { background: transparent; border: 0; color: #f2d9c0; cursor: pointer; font-size: 2rem; line-height: 1; position: absolute; right: 24px; top: 19px; }.upload { align-items: center; border: 1px solid #d99462; color: #fff9ea; cursor: pointer; display: flex; font-size: .78rem; justify-content: space-between; letter-spacing: .12em; padding: 18px 20px; text-transform: uppercase; }.upload span { color: #e9ab75; font-size: 1.25rem; }.formats { color: #b2beae; font-size: .67rem; letter-spacing: .08em; text-align: center; }.or { border-top: 1px solid #496055; height: 1px; margin: 36px 0 26px; text-align: center; }.or span { background: var(--ink); color: #b2beae; font-size: .65rem; letter-spacing: .1em; padding: 0 12px; position: relative; top: -8px; text-transform: uppercase; }.paste-label { color: #f2d9c0; display: block; font-size: .72rem; letter-spacing: .1em; margin-bottom: 9px; text-transform: uppercase; } textarea { background: #182c22; border: 1px solid #496055; color: #fff9ea; font: 1rem/1.5 "Crimson Pro", serif; min-height: 100px; padding: 12px; resize: vertical; width: 100%; } .read-paste { background: #d99462; border: 0; color: var(--ink); cursor: pointer; font: 500 .72rem "DM Sans", sans-serif; letter-spacing: .1em; margin-top: 12px; padding: 14px 18px; text-transform: uppercase; }.import-status { color: #f3c785; font-size: .8rem; min-height: 1em; }
+dialog { background: var(--panel-bg); border: 0; color: var(--panel-text); max-width: 650px; min-height: min(620px, 92svh); padding: clamp(35px, 7vw, 70px); width: min(100%, 650px); } dialog::backdrop { background: var(--backdrop); backdrop-filter: blur(4px); } dialog h2 { font: 500 clamp(3.4rem, 9vw, 6rem)/.84 "Crimson Pro", serif; letter-spacing: -.07em; margin: 18px 0 38px; } dialog .kicker { color: var(--kicker); margin: 0; }.close-dialog { background: transparent; border: 0; color: var(--panel-line); cursor: pointer; font-size: 2rem; line-height: 1; position: absolute; right: 24px; top: 19px; }.upload { align-items: center; border: 1px solid var(--ring); color: var(--panel-text); cursor: pointer; display: flex; font-size: .78rem; justify-content: space-between; letter-spacing: .12em; padding: 18px 20px; text-transform: uppercase; }.upload span { color: var(--accent-strong); font-size: 1.25rem; }.formats { color: var(--panel-muted); font-size: .67rem; letter-spacing: .08em; text-align: center; }.or { border-top: 1px solid var(--panel-border); height: 1px; margin: 36px 0 26px; text-align: center; }.or span { background: var(--panel-bg); color: var(--panel-muted); font-size: .65rem; letter-spacing: .1em; padding: 0 12px; position: relative; top: -8px; text-transform: uppercase; }.paste-label { color: var(--panel-line); display: block; font-size: .72rem; letter-spacing: .1em; margin-bottom: 9px; text-transform: uppercase; } textarea { background: var(--panel-bg); border: 1px solid var(--panel-border); color: var(--panel-text); font: 1rem/1.5 "Crimson Pro", serif; min-height: 100px; padding: 12px; resize: vertical; width: 100%; } .read-paste { background: var(--accent); border: 0; color: var(--accent-btn-text); cursor: pointer; font: 500 .72rem "DM Sans", sans-serif; letter-spacing: .1em; margin-top: 12px; padding: 14px 18px; text-transform: uppercase; }.import-status { color: var(--accent-glow); font-size: .8rem; min-height: 1em; }

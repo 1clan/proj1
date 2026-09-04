@@ -4,7 +4,20 @@ const library = document.querySelector('#library');
 const fileInput = document.querySelector('#file-input');
 const status = document.querySelector('#import-status');
 const title = document.querySelector('#book-title');
+const themeToggle = document.querySelector('#theme-toggle');
 let pages = [];
+
+function applyTheme(dark) {
+  document.documentElement.classList.toggle('dark', dark);
+  themeToggle.textContent = dark ? 'Light' : 'Dark';
+  try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+}
+themeToggle.addEventListener('click', () => {
+  applyTheme(!document.documentElement.classList.contains('dark'));
+});
+let storedTheme = 'light';
+try { storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {}
+applyTheme(storedTheme === 'dark');
 let observer;
 function closeLibrary() {
   if (typeof library.close === 'function') library.close();
