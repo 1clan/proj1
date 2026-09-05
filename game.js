@@ -7,17 +7,27 @@ const title = document.querySelector('#book-title');
 const themeToggle = document.querySelector('#theme-toggle');
 let pages = [];
 
-function applyTheme(dark) {
-  document.documentElement.classList.toggle('dark', dark);
-  themeToggle.textContent = dark ? 'Light' : 'Dark';
-  try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+const THEMES = ['light', 'dark', 'tui'];
+const THEME_LABELS = { light: 'Dark', dark: 'TUI', tui: 'Light' };
+function currentTheme() {
+  const root = document.documentElement;
+  if (root.classList.contains('tui')) return 'tui';
+  if (root.classList.contains('dark')) return 'dark';
+  return 'light';
+}
+function applyTheme(theme) {
+  if (!THEMES.includes(theme)) theme = 'light';
+  themeToggle.textContent = THEME_LABELS[theme];
+  document.documentElement.classList.toggle('dark', theme === 'dark');
+  document.documentElement.classList.toggle('tui', theme === 'tui');
+  try { localStorage.setItem('theme', theme); } catch (e) {}
 }
 themeToggle.addEventListener('click', () => {
-  applyTheme(!document.documentElement.classList.contains('dark'));
+  applyTheme(THEMES[(THEMES.indexOf(currentTheme()) + 1) % THEMES.length]);
 });
 let storedTheme = 'light';
 try { storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {}
-applyTheme(storedTheme === 'dark');
+applyTheme(storedTheme);
 let observer;
 function closeLibrary() {
   if (typeof library.close === 'function') library.close();
